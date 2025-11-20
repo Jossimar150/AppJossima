@@ -1,4 +1,4 @@
-import React,{useState, useEffect, act} from "react";
+import React,{useState, useEffect} from "react";
 import { View, Text, FlatList, TouchableOpacity, Alert, TextInput, Modal, ActivityIndicator,ScrollView } from "react-native";
 import {categoriesStyles} from '../styles/CategoriesStyles';
 import {categoryService, authService} from '../services/api';
@@ -210,10 +210,61 @@ export default function CategoriesScreen(){
 
             <Modal animationType="slide" transparent={true} visible={modalVisible}>
                 <View style={categoriesStyles.modalOverlay}>
-                    <View style={categoriesStyles.modalContainer}>
+                    <View style={categoriesStyles.modalContent}>
+                        <ScrollView>
+                            <View style={categoriesStyles.modalHeader}>
+                                <Text style={categoriesStyles.modalTitle}>
+                                    {editing ? 'Editar Categoria' : 'Nueva Categoria'}
+                                </Text>
+                            </View>
+
+                            <View style={categoriesStyles.formContainer}>
+                                <View style={categoriesStyles.inputGroup}>
+                                    <Text style={categoriesStyles.inputLabel}>Nombre *</Text>
+                                    <TextInput
+                                        style={categoriesStyles.input}
+                                        value={formData.name}
+                                        onChangeText={(text) => setFormData({...formData, name: text})}
+                                        placeholder="Nombre de la categoria"
+                                        placeholderTextColor="#999"
+                                    />
+                                </View>
+                            
+                                <View style={categoriesStyles.inputGroup}>
+                                        <Text style={categoriesStyles.inputLabel}>Descripcion</Text>
+                                        <TextInput
+                                            style={[categoriesStyles.input, categoriesStyles.textArea]}
+                                            value={formData.description}
+                                            onChangeText={(text) => setFormData({...formData, description: text})}
+                                            placeholder="Descripcion opcional"
+                                            placeholderTextColor="#999"
+                                            multiline
+                                            numberOfLines={3}
+                                            textAlignVertical="top"
+                                        />
+                                </View>
+                            </View>
+
+                            <View style={categoriesStyles.modalButtons}>
+                                <TouchableOpacity 
+                                style={[categoriesStyles.modalButton, categoriesStyles.cancelButton]}
+                                onPress={() => setModalVisible(false)}
+                                >
+                                    <Text style={[categoriesStyles.modalButtonText, categoriesStyles.cancelButtonText]}>Cancelar</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity 
+                                    style={[categoriesStyles.modalButton, categoriesStyles.saveButton]}
+                                    onPress={handlesave}
+                                >
+                                    <Text style={[categoriesStyles.modalButtonText, categoriesStyles.saveButtonText]}>
+                                        {editing ? 'Actualizar' : 'Guardar'}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </Modal>
         </View>
-    )
+    );
 }
