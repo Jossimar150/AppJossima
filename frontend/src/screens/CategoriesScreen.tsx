@@ -130,7 +130,7 @@ export default function CategoriesScreen(){
                     <Text style={categoriesStyles.categoryDescription}>{item.description}</Text>
                 )}
             </View>
-            <View style={categoriesStyles.actionsConatiner}>
+            <View style={categoriesStyles.actionsContainer}>
                 <TouchableOpacity 
                     style={[categoriesStyles.actionButton, categoriesStyles.editButton]}
                     onPress={() => handleEdit(item)}

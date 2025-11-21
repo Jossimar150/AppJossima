@@ -185,14 +185,14 @@ export default function SubcategoriesScreen(){
                 refreshing={loading}
                 onRefresh={loadSubcategories}
                 style={subcategoriesStyles.list}
-                contentContainerStyle={subcategoriesStyles.listContainer}
+                contentContainerStyle={subcategoriesStyles.listContent}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item}) => {
                     if(!item) return null;
 
                     return(
                         <View style={subcategoriesStyles.card}>
-                            <View style={subcategoriesStyles.cardHeader}>
+                            <View style={subcategoriesStyles.cardContent}>
                                 <Text style={subcategoriesStyles.cardTitle}>
                                     {item?.name || 'Sin nombre'} {item.active && <Text style={{color: '#999'}}>(Inactiva)</Text>}
                                     </Text>
@@ -204,13 +204,13 @@ export default function SubcategoriesScreen(){
                                     style={[subcategoriesStyles.actionButton, subcategoriesStyles.editButton]}
                                     onPress={() => openModal(item)}
                                 >
-                                    <Text style={subcategoriesStyles.actionButtonText}>Editar</Text>
+                                    <Text style={subcategoriesStyles.editButtonText}>Editar</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity 
                                     style={[subcategoriesStyles.actionButton,item.active ? subcategoriesStyles.deleteButton : subcategoriesStyles.editButton]}
                                     onPress={() => handleToggleActive(item)}
                                     >
-                                    <Text style={[subcategoriesStyles.actionButtonText,item.active ? subcategoriesStyles.deleteButtonText : subcategoriesStyles.editButtonText]}>
+                                    <Text style={[item.active ? subcategoriesStyles.deleteButtonText : subcategoriesStyles.editButtonText]}>
                                         {item.active ? 'Descativar' : 'Activar'}
                                     </Text>
                                 </TouchableOpacity>
@@ -219,7 +219,7 @@ export default function SubcategoriesScreen(){
                                         style={[subcategoriesStyles.actionButton,subcategoriesStyles.deleteButton]}
                                         onPress={() => handleDelete(item)}
                                         >
-                                            <Text style={[subcategoriesStyles.actionButtonText, subcategoriesStyles.deleteButtonText]}>Eliminar</Text>
+                                            <Text style={ subcategoriesStyles.deleteButtonText}>Eliminar</Text>
                                         </TouchableOpacity>
                                     )}
                             </View>
@@ -248,7 +248,6 @@ export default function SubcategoriesScreen(){
                                     {editing ? 'Editar Subcategoria' : 'Nueva Subcategoria'}
                                 </Text>
                             </View>
-
                             <View style={subcategoriesStyles.formContainer}>
                                 <View style={subcategoriesStyles.inputGroup}>
                                     <Text style={subcategoriesStyles.inputLabel}>Nombre *</Text>
@@ -260,7 +259,6 @@ export default function SubcategoriesScreen(){
                                         placeholderTextColor="#999"
                                     />
                                 </View>
-                            
                                 <View style={subcategoriesStyles.inputGroup}>
                                         <Text style={subcategoriesStyles.inputLabel}>Descripcion</Text>
                                         <TextInput
@@ -274,7 +272,6 @@ export default function SubcategoriesScreen(){
                                             textAlignVertical="top"
                                         />
                                 </View>
-
                                 <View style={subcategoriesStyles.inputGroup}>
                                         <Text style={subcategoriesStyles.inputLabel}>Categoria</Text>
                                         <View style={subcategoriesStyles.picker}>
@@ -296,13 +293,12 @@ export default function SubcategoriesScreen(){
                                         </View>
                                 </View>
                             </View>
-
                             <View style={subcategoriesStyles.modalActions}>
                                 <TouchableOpacity 
-                                style={[subcategoriesStyles.secundaryButton]}
+                                style={[subcategoriesStyles.secondaryButton]}
                                 onPress={() => setModalVisible(false)}
                                 >
-                                <Text style={subcategoriesStyles.secundaryButtonText}>Cancelar</Text>
+                                <Text style={subcategoriesStyles.secondaryButtonText}>Cancelar</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity 
                                     style={[subcategoriesStyles.primaryButton]}
