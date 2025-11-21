@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, act} from "react";
 import { View, Text, FlatList, TouchableOpacity, Alert, TextInput, Modal, ActivityIndicator,ScrollView } from "react-native";
 import {categoriesStyles} from '../styles/CategoriesStyles';
 import {categoryService, authService} from '../services/api';
