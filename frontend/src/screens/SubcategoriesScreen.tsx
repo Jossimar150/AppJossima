@@ -295,31 +295,20 @@ export default function SubcategoriesScreen(){
                                             </Picker>
                                         </View>
                                 </View>
-                                        <TextInput
-                                            style={[subcategoriesStyles.input, subcategoriesStyles.textArea]}
-                                            value={formData.description}
-                                            onChangeText={(text) => setFormData({...formData, description: text})}
-                                            placeholder="Descripcion"
-                                            placeholderTextColor="#999"
-                                            multiline
-                                            numberOfLines={3}
-                                            textAlignVertical="top"
-                                        />
                                 </View>
-                            </View>
 
-                            <View style={subcategoriesStyles.modalButtons}>
+                            <View style={subcategoriesStyles.modalActions}>
                                 <TouchableOpacity 
-                                style={[subcategoriesStyles.modalButton, subcategoriesStyles.cancelButton]}
+                                style={[subcategoriesStyles.secundaryButton]}
                                 onPress={() => setModalVisible(false)}
                                 >
-                                    <Text style={[subcategoriesStyles.modalButtonText, subcategoriesStyles.cancelButtonText]}>Cancelar</Text>
+                                    <Text style={[subcategoriesStyles.secundaryButtonText]}>Cancelar</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity 
-                                    style={[subcategoriesStyles.modalButton, subcategoriesStyles.saveButton]}
+                                    style={[subcategoriesStyles.primaryButton]}
                                     onPress={handlesave}
                                 >
-                                    <Text style={[subcategoriesStyles.modalButtonText, subcategoriesStyles.saveButtonText]}>
+                                    <Text style={[subcategoriesStyles.primaryButtonText]}>
                                         {editing ? 'Actualizar' : 'Guardar'}
                                     </Text>
                                 </TouchableOpacity>
@@ -328,6 +317,6 @@ export default function SubcategoriesScreen(){
                     </View>
                 </View>
             </Modal>
-        </>
+        </View>
     );
 }
